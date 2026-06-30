@@ -38,12 +38,14 @@ struct StudioToolbar: View {
                         rotateDirection = active ? -1 : 0
                     }
 
-                    circleButton(systemName: "figure.stand") {
-                        sceneState.addHuman()
-                    }
+                    VStack(spacing: 12) {
+                        circleButton(systemName: "figure.stand") {
+                            sceneState.addHuman()
+                        }
 
-                    circleButton(systemName: "trash", tint: .red, disabled: noSelection) {
-                        sceneState.deleteSelectedHuman()
+                        circleButton(systemName: "trash", tint: .red, disabled: noSelection) {
+                            sceneState.deleteSelectedHuman()
+                        }
                     }
                 } else {
                     focalLengthButton
@@ -58,12 +60,14 @@ struct StudioToolbar: View {
             // Right group: movement (edit only) + lock/return (both modes).
             HStack(spacing: 16) {
                 if sceneState.mode == .edit {
-                    holdButton(systemName: "arrow.up") { active in
-                        verticalDirection = active ? 1 : 0
-                    }
+                    VStack(spacing: 12) {
+                        holdButton(systemName: "arrow.up") { active in
+                            verticalDirection = active ? 1 : 0
+                        }
 
-                    holdButton(systemName: "arrow.down") { active in
-                        verticalDirection = active ? -1 : 0
+                        holdButton(systemName: "arrow.down") { active in
+                            verticalDirection = active ? -1 : 0
+                        }
                     }
 
                     Joystick(value: $joystick)
